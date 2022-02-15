@@ -1,0 +1,119 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX1017T92Z-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/0/0
+ ip address 100.0.0.1 255.0.0.0
+ clock rate 2000000
+!
+interface Serial0/1/0
+ ip address 101.0.0.1 255.0.0.0
+ clock rate 2000000
+!
+interface Serial0/2/0
+ no ip address
+ ip address 102.0.0.1 255.0.0.0
+ clock rate 2000000
+!
+interface Serial0/3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router eigrp 50
+ network 100.0.0.0
+ network 101.0.0.0
+ network 102.0.0.0
+ auto-summary
+!
+router rip
+!
+ip classless
+ip route 10.0.0.0 255.0.0.0 100.0.0.2 
+ip route 11.0.0.0 255.0.0.0 100.0.0.2 
+ip route 12.0.0.0 255.0.0.0 100.0.0.2 
+ip route 13.0.0.0 255.0.0.0 100.0.0.2 
+ip route 14.0.0.0 255.0.0.0 100.0.0.2 
+ip route 20.0.0.0 255.0.0.0 101.0.0.2 
+ip route 21.0.0.0 255.0.0.0 101.0.0.2 
+ip route 22.0.0.0 255.0.0.0 101.0.0.2 
+ip route 23.0.0.0 255.0.0.0 101.0.0.2 
+ip route 24.0.0.0 255.0.0.0 101.0.0.2 
+ip route 30.0.0.0 255.0.0.0 102.0.0.2 
+ip route 31.0.0.0 255.0.0.0 102.0.0.2 
+ip route 32.0.0.0 255.0.0.0 102.0.0.2 
+ip route 33.0.0.0 255.0.0.0 102.0.0.2 
+ip route 34.0.0.0 255.0.0.0 102.0.0.2 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+

@@ -1,0 +1,259 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+ip dhcp excluded-address 192.168.36.254
+ip dhcp excluded-address 192.168.37.254
+ip dhcp excluded-address 192.168.38.254
+!
+ip dhcp pool p36
+ network 192.168.36.0 255.255.255.0
+ default-router 192.168.36.254
+ option 150 ip 192.168.36.254
+ip dhcp pool p37
+ network 192.168.37.0 255.255.255.0
+ default-router 192.168.37.254
+ option 150 ip 192.168.37.254
+ip dhcp pool p38
+ network 192.168.38.0 255.255.255.0
+ default-router 192.168.38.254
+ option 150 ip 192.168.38.254
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX1017IFG6-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ no shutdown
+!
+interface FastEthernet0/1.36
+ encapsulation dot1Q 36
+ ip address 192.168.36.254 255.255.255.0
+!
+interface FastEthernet0/1.37
+ encapsulation dot1Q 37
+ ip address 192.168.37.254 255.255.255.0
+!
+interface FastEthernet0/1.38
+ encapsulation dot1Q 38
+ ip address 192.168.38.254 255.255.255.0
+!
+interface Serial0/1/0
+ ip address 22.0.0.2 255.0.0.0
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router eigrp 50
+ network 22.0.0.0
+ network 192.168.36.0
+ network 192.168.37.0
+ network 192.168.38.0
+!
+router rip
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+dial-peer voice 130 voip
+ destination-pattern 1..
+ session target ipv4:10.0.0.2
+!
+dial-peer voice 129 voip
+ destination-pattern 2..
+ session target ipv4:11.0.0.2
+!
+dial-peer voice 128 voip
+ destination-pattern 3..
+ session target ipv4:12.0.0.2
+!
+dial-peer voice 127 voip
+ destination-pattern 4..
+ session target ipv4:13.0.0.2
+!
+dial-peer voice 126 voip
+ destination-pattern 5..
+ session target ipv4:14.0.0.2
+!
+dial-peer voice 125 voip
+ destination-pattern 6..
+ session target ipv4:20.0.0.2
+!
+dial-peer voice 124 voip
+ destination-pattern 7..
+ session target ipv4:21.0.0.2
+!
+dial-peer voice 122 voip
+ destination-pattern 9..
+ session target ipv4:23.0.0.2
+!
+dial-peer voice 121 voip
+ destination-pattern 10..
+ session target ipv4:24.0.0.2
+!
+dial-peer voice 120 voip
+ destination-pattern 11..
+ session target ipv4:30.0.0.2
+!
+dial-peer voice 119 voip
+ destination-pattern 12..
+ session target ipv4:31.0.0.2
+!
+dial-peer voice 118 voip
+ destination-pattern 13..
+ session target ipv4:32.0.0.2
+!
+dial-peer voice 117 voip
+ destination-pattern 14..
+ session target ipv4:33.0.0.2
+!
+dial-peer voice 116 voip
+ destination-pattern 15..
+ session target ipv4:34.0.0.2
+!
+telephony-service
+ max-ephones 9
+ max-dn 9
+ ip source-address 22.0.0.2 port 2000
+ auto assign 1 to 9
+!
+ephone-dn 1
+ number 801
+!
+ephone-dn 2
+ number 802
+!
+ephone-dn 3
+ number 803
+!
+ephone-dn 4
+ number 804
+!
+ephone-dn 5
+ number 805
+!
+ephone-dn 6
+ number 806
+!
+ephone-dn 7
+ number 807
+!
+ephone-dn 8
+ number 808
+!
+ephone-dn 9
+ number 809
+!
+ephone 1
+ device-security-mode none
+ mac-address 0002.4ADE.50B5
+ type 7960
+ button 1:1
+!
+ephone 2
+ device-security-mode none
+ mac-address 000B.BE1B.D47D
+ type 7960
+ button 1:2
+!
+ephone 3
+ device-security-mode none
+ mac-address 0030.F2A4.2959
+ type 7960
+ button 1:3
+!
+ephone 4
+ device-security-mode none
+ mac-address 0001.C904.14B5
+ type 7960
+ button 1:4
+!
+ephone 5
+ device-security-mode none
+ mac-address 0050.0F12.E35D
+ type 7960
+ button 1:5
+!
+ephone 6
+ device-security-mode none
+ mac-address 00D0.5837.E975
+ type 7960
+ button 1:6
+!
+ephone 7
+ device-security-mode none
+ mac-address 0060.4709.59B7
+ type 7960
+ button 1:7
+!
+ephone 8
+ device-security-mode none
+ mac-address 0000.0CAD.ABA6
+ type 7960
+ button 1:8
+!
+ephone 9
+ device-security-mode none
+ mac-address 00E0.B08D.3486
+ type 7960
+ button 1:9
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+

@@ -1,0 +1,259 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+ip dhcp excluded-address 192.168.56.254
+ip dhcp excluded-address 192.168.57.254
+ip dhcp excluded-address 192.168.58.254
+!
+ip dhcp pool p56
+ network 192.168.56.0 255.255.255.0
+ default-router 192.168.56.254
+ option 150 ip 192.168.56.254
+ip dhcp pool p57
+ network 192.168.57.0 255.255.255.0
+ default-router 192.168.57.254
+ option 150 ip 192.168.57.254
+ip dhcp pool p58
+ network 192.168.58.0 255.255.255.0
+ default-router 192.168.58.254
+ option 150 ip 192.168.58.254
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX1017IFG6-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ no shutdown
+!
+interface FastEthernet0/1.56
+ encapsulation dot1Q 56
+ ip address 192.168.56.254 255.255.255.0
+!
+interface FastEthernet0/1.57
+ encapsulation dot1Q 57
+ ip address 192.168.57.254 255.255.255.0
+!
+interface FastEthernet0/1.58
+ encapsulation dot1Q 58
+ ip address 192.168.58.254 255.255.255.0
+!
+interface Serial0/1/0
+ ip address 32.0.0.2 255.0.0.0
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router eigrp 50
+ network 32.0.0.0
+ network 192.168.56.0
+ network 192.168.57.0
+ network 192.168.58.0
+!
+router rip
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+dial-peer voice 130 voip
+ destination-pattern 1..
+ session target ipv4:10.0.0.2
+!
+dial-peer voice 129 voip
+ destination-pattern 2..
+ session target ipv4:11.0.0.2
+!
+dial-peer voice 128 voip
+ destination-pattern 3..
+ session target ipv4:12.0.0.2
+!
+dial-peer voice 127 voip
+ destination-pattern 4..
+ session target ipv4:13.0.0.2
+!
+dial-peer voice 126 voip
+ destination-pattern 5..
+ session target ipv4:14.0.0.2
+!
+dial-peer voice 125 voip
+ destination-pattern 6..
+ session target ipv4:20.0.0.2
+!
+dial-peer voice 124 voip
+ destination-pattern 7..
+ session target ipv4:21.0.0.2
+!
+dial-peer voice 123 voip
+ destination-pattern 8..
+ session target ipv4:22.0.0.2
+!
+dial-peer voice 122 voip
+ destination-pattern 9..
+ session target ipv4:23.0.0.2
+!
+dial-peer voice 121 voip
+ destination-pattern 10..
+ session target ipv4:24.0.0.2
+!
+dial-peer voice 120 voip
+ destination-pattern 11..
+ session target ipv4:30.0.0.2
+!
+dial-peer voice 119 voip
+ destination-pattern 12..
+ session target ipv4:31.0.0.2
+!
+dial-peer voice 117 voip
+ destination-pattern 14..
+ session target ipv4:33.0.0.2
+!
+dial-peer voice 116 voip
+ destination-pattern 15..
+ session target ipv4:34.0.0.2
+!
+telephony-service
+ max-ephones 9
+ max-dn 9
+ ip source-address 32.0.0.2 port 2000
+ auto assign 1 to 9
+!
+ephone-dn 1
+ number 1301
+!
+ephone-dn 2
+ number 1302
+!
+ephone-dn 3
+ number 1303
+!
+ephone-dn 4
+ number 1304
+!
+ephone-dn 5
+ number 1305
+!
+ephone-dn 6
+ number 1306
+!
+ephone-dn 7
+ number 1307
+!
+ephone-dn 8
+ number 1308
+!
+ephone-dn 9
+ number 1309
+!
+ephone 1
+ device-security-mode none
+ mac-address 00D0.979B.EE09
+ type 7960
+ button 1:1
+!
+ephone 2
+ device-security-mode none
+ mac-address 0001.42EA.79AC
+ type 7960
+ button 1:2
+!
+ephone 3
+ device-security-mode none
+ mac-address 0060.47E9.1CA9
+ type 7960
+ button 1:3
+!
+ephone 4
+ device-security-mode none
+ mac-address 0002.4A85.6E27
+ type 7960
+ button 1:4
+!
+ephone 5
+ device-security-mode none
+ mac-address 0001.6318.A059
+ type 7960
+ button 1:5
+!
+ephone 6
+ device-security-mode none
+ mac-address 00D0.BCEA.8287
+ type 7960
+ button 1:6
+!
+ephone 7
+ device-security-mode none
+ mac-address 0030.A339.97E1
+ type 7960
+ button 1:7
+!
+ephone 8
+ device-security-mode none
+ mac-address 0090.0C0C.5942
+ type 7960
+ button 1:8
+!
+ephone 9
+ device-security-mode none
+ mac-address 0001.9762.D758
+ type 7960
+ button 1:9
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+

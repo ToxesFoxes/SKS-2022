@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Py:Gen Project",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/python/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "JS:Build Router",
+            "type": "node",
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**"],
+            "program": "${workspaceFolder}/router.js",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "JS:Build Switch",
+            "type": "node",
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**"],
+            "program": "${workspaceFolder}/switch.js",
+            "console": "integratedTerminal"
+        }
+    ]
+}
